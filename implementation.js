@@ -8,6 +8,8 @@ var ToString = require('es-abstract/2019/ToString');
 var IsRegExp = require('es-abstract/2019/IsRegExp');
 var ToInteger = require('es-abstract/2019/ToInteger');
 var StringCharCodeAt = callBound('String.prototype.charCodeAt');
+var max = Math.max;
+var min = Math.min;
 
 // https://tc39.es/ecma262/#sec-string.prototype.startswith
 module.exports = function startsWith(searchString) {
@@ -18,7 +20,7 @@ module.exports = function startsWith(searchString) {
 
 	var pos = ToInteger(arguments.length > 1 ? arguments[1] : undefined);
 	var len = S.length;
-	var start = Math.min(Math.max(pos, 0), len);
+	var start = min(max(pos, 0), len);
 	var searchLength = searchStr.length;
 
 	// Avoid the `indexOf` call if no match is possible
